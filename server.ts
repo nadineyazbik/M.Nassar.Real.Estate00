@@ -11,10 +11,9 @@ const PORT = 3000;
 
 app.use(express.json());
 
-// Lazy/safe initialization of GoogleGenAI
-const getAI = () => {
-  const apiKey =
-    process.env.M_NASSAR_REALSTATE_KEY ;
+// Lazy/safe initialization of Assistant Engine
+const getAssistantEngine = () => {
+  const apiKey = process.env.M_NASSAR_REALSTATE_KEY;
     
   if (!apiKey) {
     console.warn("API Key is not set. Using intelligent fallback advisor.");
@@ -22,11 +21,6 @@ const getAI = () => {
   }
   return new GoogleGenAI({
     apiKey,
-    httpOptions: {
-      headers: {
-        "User-Agent": "aistudio-build",
-      },
-    },
   });
 };
 
@@ -35,8 +29,8 @@ app.get("/api/health", (_req, res) => {
   res.json({ status: "ok", app: "M.Nassar Real Estate" });
 });
 
-// 1. Gemini AI Real Estate Assistant Chat Endpoint
-app.post("/api/ai/chat", async (req, res) => {
+// Real Estate Assistant Chat Endpoint
+app.post("/api/chat", async (req, res) => {
   try {
     const { message } = req.body;
 
@@ -45,16 +39,15 @@ app.post("/api/ai/chat", async (req, res) => {
       return;
     }
 
-    const ai = getAI();
-    if (!ai) {
-      // Graceful fallback response when API key is not configured
+    const botCore = getAssistantEngine();
+    if (!botCore) {
       const reply = `أهلاً بك في م. نصار العقارية. نحن متخصصون في شقق وفيلات وأراضي بيروت (الحمرا، رأس بيروت، الأشرفية، تلة الخياط، المصيطبة) وكافة المناطق اللبنانية.
 يسرنا خدمتكم مباشرة عبر الهاتف أو الواتساب على الرقم: +961 76 743 414 للإجابة الفورية وتنسيق الجولات الميدانية ومعاملات السند الأخضر (2400 سهم).`;
       res.json({ reply });
       return;
     }
 
-    const systemInstruction = `أنت "مستشار م. نصار العقاري الذكي" (M.Nassar Real Estate AI Advisor)، خبير عقاري متخصص وحصري في السوق العقاري اللبناني (بيروت ومختلف المناطق اللبنانية).
+    const systemInstruction = `أنت "مستشار م. نصار العقاري" (M.Nassar Real Estate Advisor)، خبير عقاري متخصص وحصري في السوق العقاري اللبناني (بيروت ومختلف المناطق اللبنانية).
 تحدث دائماً بأسلوب راقٍ، مهني، وموثوق باللغة العربية (أو بالإنجليزية إذا سأل المستخدم بالإنجليزية).
 خبراتك تشمل:
 1. شقق وعقارات داخل بيروت (الحمرا، المصيطبة، تلة الخياط، رأس بيروت، الروشة، الأشرفية، قريطم، الردينة، الصيفي، عين المريسة...).
@@ -64,7 +57,7 @@ app.post("/api/ai/chat", async (req, res) => {
 5. الإجابة بدقة ووضوح وتقديم النصيحة بأسلوب المكاتب العقارية الموثوقة.
 إذا سألك المستخدم عن رقم التواصل أو الواتساب، اذكر رقم م. نصار العقارية: +961 76 743 414.`;
 
-    const response = await ai.models.generateContent({
+    const response = await botCore.models.generateContent({
       model: "gemini-3.8-flash",
       contents: message,
       config: {
@@ -75,20 +68,19 @@ app.post("/api/ai/chat", async (req, res) => {
 
     res.json({ reply: response.text || "عذراً، لم أستطع معالجة طلبك حالياً." });
   } catch (error: any) {
-    console.error("Gemini AI Chat Error:", error);
+    console.error("Chat Error:", error);
     res.json({
       reply: `مرحباً بك في م. نصار العقارية. يمكنك التواصل المباشر مع فريقنا المختص عبر الواتساب على الرقم +961 76 743 414 للحصول على أدق تفاصيل العقارات في بيروت وجبل لبنان.`,
     });
   }
 });
 
-// 2. Gemini AI Property Evaluation / Investment Analysis Endpoint
-app.post("/api/ai/evaluate", async (req, res) => {
+app.post("/api/evaluate", async (req, res) => {
   try {
     const { propertyTitle, location, price, propertyType, areaSqM, bedrooms, bathrooms, description } = req.body;
 
-    const ai = getAI();
-    if (!ai) {
+    const botCore = getAssistantEngine();
+    if (!botCore) {
       const evaluation = `### تقرير تقييم مبدئي من م. نصار العقارية
 **العقار:** ${propertyTitle || 'عقار في لبنان'} - ${location || 'بيروت'}
 **السعر المقترح:** $${price?.toLocaleString?.() || price} | **المساحة:** ${areaSqM || '-'} م²
@@ -115,7 +107,7 @@ app.post("/api/ai/evaluate", async (req, res) => {
 - عدد الغرف: ${bedrooms} نوم / ${bathrooms} حمام
 - الوصف الإضافي: ${description || 'لا يوجد'}`;
 
-    const response = await ai.models.generateContent({
+    const response = await botCore.models.generateContent({
       model: "gemini-3.8-flash",
       contents: prompt,
       config: {
@@ -126,7 +118,7 @@ app.post("/api/ai/evaluate", async (req, res) => {
 
     res.json({ evaluation: response.text || "تم التقييم بنجاح." });
   } catch (error: any) {
-    console.error("Gemini AI Valuation Error:", error);
+    console.error("Valuation Error:", error);
     res.json({
       evaluation: `تم استلام تفاصيل العقار. للتقييم الدقيق ومراجعة الأسعار التقديرية الحالية في ${location || 'بيروت'}، يرجى تزويدنا برقم السجل العقاري عبر واتساب م. نصار: +961 76 743 414.`,
     });

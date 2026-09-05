@@ -252,7 +252,7 @@ export default function App() {
 
                   <button
                     type="button"
-                    id="btn-open-ai-chat"
+                    id="btn-open-chat"
                     onClick={() => setIsChatOpen(true)}
                     className="liquid-glass border border-white/20 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-200 hover:bg-white/10 cursor-pointer flex items-center gap-2 text-sm"
                   >
@@ -913,11 +913,11 @@ export default function App() {
       </section>
 
       {/* ========================================================================= */}
-      {/* 6. ADVISORY & AI VALUATION SECTION (#advisory, #valuation) */}
+      {/* 6. ADVISORY & VALUATION SECTION (#advisory, #valuation) */}
       {/* ========================================================================= */}
       <section id="valuation" className="w-full py-24 bg-slate-100 dark:bg-neutral-950 border-t border-b border-slate-200 dark:border-white/10 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 space-y-16">
-          {/* AI Valuation Tool */}
+          {/* Valuation Tool */}
           <ValuationTool />
 
           {/* Legal Advisory & Cadastral Guide */}
@@ -1002,7 +1002,7 @@ export default function App() {
       {/* Official Floating WhatsApp Button (Fixed on side/corner) */}
       <FloatingWhatsAppButton />
 
-      {/* Floating AI Chat Advisor Trigger (Positioned on the other corner) */}
+      
       <div className="fixed bottom-6 left-6 z-40">
         <button
           onClick={() => setIsChatOpen(true)}

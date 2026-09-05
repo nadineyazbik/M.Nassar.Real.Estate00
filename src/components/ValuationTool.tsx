@@ -55,7 +55,7 @@ export const ValuationTool: React.FC = () => {
     };
 
     try {
-      const res = await fetch('/api/ai/evaluate', {
+      const res = await fetch('/api/evaluate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -278,7 +278,7 @@ export const ValuationTool: React.FC = () => {
             ) : (
               <>
                 <Calculator className="w-4 h-4" />
-                <span>إجراء تقييم استثماري فوري بـ Gemini AI</span>
+                <span>إجراء تقييم استثماري فوري بـ</span>
               </>
             )}
           </button>
