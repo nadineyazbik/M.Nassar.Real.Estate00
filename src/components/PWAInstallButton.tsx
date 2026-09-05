@@ -92,8 +92,8 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
             {/* Instructions by Device */}
             <div className="space-y-4 my-5 text-xs sm:text-sm text-neutral-200">
               {isIOS ? (
-                <div className="p-4 rounded-2xl bg-amber-500/15 border border-amber-500/30 space-y-3">
-                  <div className="font-bold text-amber-300 flex items-center gap-2">
+                
+                <div className="p-4 rounded-2xl bg-amber-500/15 border border-amber-500/30 space-y-3 w-full max-w-sm mx-auto shadow-xl">
                     <Smartphone className="w-4 h-4 text-amber-400" />
                     <span>خطوات التثبيت على أجهزة آيفون وآيباد (iOS Safari):</span>
                   </div>
