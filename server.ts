@@ -1,11 +1,10 @@
 import express from "express";
 import path from "path";
-import { fileURLToPath } from "url";
+
 import { createServer as createViteServer } from "vite";
 import { GoogleGenAI } from "@google/genai";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = path.resolve();
 
 const app = express();
 const PORT = 3000;

@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { AnimatedHeading } from './components/AnimatedHeading';
 import { FadeIn } from './components/FadeIn';
-import { AIChatDrawer } from './components/ChatDrawer';
+import { ChatDrawer } from './components/ChatDrawer';
 import { PropertyCard } from './components/PropertyCard';
 import { PropertyModal } from './components/PropertyModal';
 import { AdminCMSModal } from './components/AdminCMSModal';
@@ -10,7 +10,7 @@ import { VisitorCheckInModal } from './components/VisitorCheckInModal';
 import { WishlistModal } from './components/WishlistModal';
 import { NotificationsDropdown } from './components/NotificationsDropdown';
 import { FloatingWhatsAppButton } from './components/FloatingWhatsAppButton';
-import { AIValuationTool } from './components/ValuationTool';
+import { ValuationTool } from './components/ValuationTool';
 import { AdvisorySection } from './components/AdvisorySection';
 import { Footer } from './components/Footer';
 import { MAIN_REGIONS } from './data/regions';
@@ -918,7 +918,7 @@ export default function App() {
       <section id="valuation" className="w-full py-24 bg-slate-100 dark:bg-neutral-950 border-t border-b border-slate-200 dark:border-white/10 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 space-y-16">
           {/* AI Valuation Tool */}
-          <AIValuationTool />
+          <ValuationTool />
 
           {/* Legal Advisory & Cadastral Guide */}
           <AdvisorySection onOpenChat={() => setIsChatOpen(true)} />
@@ -1019,7 +1019,7 @@ export default function App() {
       {/* ========================================================================= */}
       {/* 10. MODALS & DRAWERS */}
       {/* ========================================================================= */}
-      <AIChatDrawer
+      <ChatDrawer
         isOpen={isChatOpen}
         onClose={() => setIsChatOpen(false)}
       />
