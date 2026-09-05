@@ -1,0 +1,6 @@
+{
+  "name": "M.Nassar Real Estate",
+  "description": "منصة م. نصار العقارية - شقق سكنية وعقارات تجارية (محل، مستودع، مكتب) للبيع والإيجار في بيروت (المزرعة، المصيطبة، راس بيروت) وخارجها بسند طابو أخضر 2400 سهم واستشارات الذكاء الاصطناعي",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

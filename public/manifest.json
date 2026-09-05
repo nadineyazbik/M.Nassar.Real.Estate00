@@ -1,0 +1,27 @@
+{
+  "id": "/",
+  "name": "م. نصار العقارية",
+  "short_name": "نصار العقارية",
+  "description": "منصة م. نصار العقارية - بيع وتأجير شقق سكنية وعقارات تجارية في بيروت وخارجها بسند طابو أخضر 2400 سهم",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#002b15",
+  "theme_color": "#004d26",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["business", "real estate", "utilities"]
+}
