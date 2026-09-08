@@ -106,13 +106,15 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
                       </span>                      
 <span>في شريط Safari السفلي.</span>
                     </li>
-                    <li className="flex items-center gap-2 flex-wrap">
-                      <span>مرر للأسفل واختر</span>
-                      <strong className="text-amber-300">"إضافة إلى الصفحة الرئيسية"</strong>
-                      <PlusSquare className="w-4 h-4 text-emerald-400 inline" />
-                    </li>
-                    <li>اضغط على <strong className="text-emerald-400">"إضافة (Add)"</strong> في الزاوية العلوية ليظهر التطبيق فوراً.</li>
-                  </ol>
+                   <li className="flex items-center gap-2 flex-wrap">
+  <span>مرر للأسفل واختر</span>
+  <strong className="text-amber-300">إضافة إلى الصفحة الرئيسية</strong>
+  <PlusSquare className="w-4 h-4 text-emerald-400 inline" />
+</li>
+<li className="flex items-center gap-2 flex-wrap">
+  <span>في الزاوية العلوية ليظهر التطبيق فوراً</span>
+  <strong className="text-emerald-400">إضافة (Add)</strong>
+</li>           </ol>
                 </div>
               ) : (
                 <div className="p-4 rounded-2xl bg-emerald-950/60 border border-emerald-500/30 space-y-3">
