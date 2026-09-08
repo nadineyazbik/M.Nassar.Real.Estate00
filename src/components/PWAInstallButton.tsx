@@ -89,7 +89,7 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
               </div>
             </div>
 
-            {/* Instructions by Device */}
+            {/* Instructions by Device */}      
             <div className="space-y-4 my-5 text-xs sm:text-sm text-neutral-200">
               {isIOS ? (
                 
@@ -103,8 +103,8 @@ export const PWAInstallButton: React.FC<PWAInstallButtonProps> = ({
                       <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-white/10 border border-white/20 text-sky-300">
                         <Share className="w-3.5 h-3.5 text-sky-400" />
                         <span>مشاركة</span>
-                      </span>
-                      <span>في شريط Safari السفلي.</span>
+                      </span>                      
+<span>في شريط Safari السفلي.</span>
                     </li>
                     <li className="flex items-center gap-2 flex-wrap">
                       <span>مرر للأسفل واختر</span>
